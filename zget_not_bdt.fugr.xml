@@ -1,0 +1,190 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<abapGit version="v1.0.0" serializer="LCL_OBJECT_FUGR" serializer_version="v1.0.0">
+ <asx:abap xmlns:asx="http://www.sap.com/abapxml" version="1.0">
+  <asx:values>
+   <AREAT>BDT Function Group</AREAT>
+   <INCLUDES>
+    <SOBJ_NAME>LZGET_NOT_BDTO01</SOBJ_NAME>
+    <SOBJ_NAME>LZGET_NOT_BDTTOP</SOBJ_NAME>
+    <SOBJ_NAME>SAPLZGET_NOT_BDT</SOBJ_NAME>
+   </INCLUDES>
+   <FUNCTIONS>
+    <item>
+     <FUNCNAME>ZGN_BUPA_EVENT_ISDAT</FUNCNAME>
+     <INCLUDE>LZGET_NOT_BDTU01</INCLUDE>
+     <SHORT_TEXT>Get package number for BP</SHORT_TEXT>
+    </item>
+    <item>
+     <FUNCNAME>ZGN_BUPA_EVENT_ISSTA</FUNCNAME>
+     <INCLUDE>LZGET_NOT_BDTU02</INCLUDE>
+     <SHORT_TEXT>Clear variables</SHORT_TEXT>
+    </item>
+   </FUNCTIONS>
+   <DYNPROS>
+    <item>
+     <HEADER>
+      <PROGRAM>SAPLZGET_NOT_BDT</PROGRAM>
+      <SCREEN>0001</SCREEN>
+      <LANGUAGE>E</LANGUAGE>
+      <DESCRIPT>BP Package Screen</DESCRIPT>
+      <TYPE>I</TYPE>
+      <NEXTSCREEN>0001</NEXTSCREEN>
+      <LINES>015</LINES>
+      <COLUMNS>100</COLUMNS>
+     </HEADER>
+     <CONTAINERS>
+      <RPY_DYCATT>
+       <TYPE>SCREEN</TYPE>
+       <NAME>SCREEN</NAME>
+      </RPY_DYCATT>
+      <RPY_DYCATT>
+       <TYPE>TABLE_CTRL</TYPE>
+       <NAME>TC_PACKAGE_NUMBER</NAME>
+       <ELEMENT_OF>SCREEN</ELEMENT_OF>
+       <LINE>002</LINE>
+       <COLUMN>004</COLUMN>
+       <LENGTH>078</LENGTH>
+       <HEIGHT>013</HEIGHT>
+       <C_RESIZE_H>X</C_RESIZE_H>
+       <C_SCROLL_V>X</C_SCROLL_V>
+       <C_SCROLL_H>X</C_SCROLL_H>
+       <TC_TABTYPE>ENTRY</TC_TABTYPE>
+       <TC_SEPAR_V>X</TC_SEPAR_V>
+       <TC_SEPAR_H>X</TC_SEPAR_H>
+       <TC_HEADER>X</TC_HEADER>
+       <TC_CONFIG>X</TC_CONFIG>
+       <TC_SEL_LNS>SINGLE</TC_SEL_LNS>
+       <TC_SEL_CLS>SINGLE</TC_SEL_CLS>
+      </RPY_DYCATT>
+     </CONTAINERS>
+     <FIELDS>
+      <RPY_DYFATC>
+       <CONT_TYPE>SCREEN</CONT_TYPE>
+       <CONT_NAME>SCREEN</CONT_NAME>
+       <TYPE>OKCODE</TYPE>
+       <TEXT>____________________</TEXT>
+       <LENGTH>020</LENGTH>
+       <VISLENGTH>020</VISLENGTH>
+       <HEIGHT>001</HEIGHT>
+       <FORMAT>CHAR</FORMAT>
+       <INPUT_FLD>X</INPUT_FLD>
+      </RPY_DYFATC>
+      <RPY_DYFATC>
+       <CONT_TYPE>TABLE_CTRL</CONT_TYPE>
+       <CONT_NAME>TC_PACKAGE_NUMBER</CONT_NAME>
+       <TYPE>TEXT</TYPE>
+       <NAME>ZPACK_BP_SCREEN-PACKAGENO</NAME>
+       <TEXT>Package_Number_</TEXT>
+       <LINE>001</LINE>
+       <COLUMN>001</COLUMN>
+       <LENGTH>015</LENGTH>
+       <VISLENGTH>076</VISLENGTH>
+       <HEIGHT>001</HEIGHT>
+       <FORMAT>CHAR</FORMAT>
+       <FROM_DICT>X</FROM_DICT>
+       <MODIFIC>F</MODIFIC>
+       <REQU_ENTRY>N</REQU_ENTRY>
+       <TC_HEADING>X</TC_HEADING>
+      </RPY_DYFATC>
+      <RPY_DYFATC>
+       <CONT_TYPE>TABLE_CTRL</CONT_TYPE>
+       <CONT_NAME>TC_PACKAGE_NUMBER</CONT_NAME>
+       <TYPE>TEMPLATE</TYPE>
+       <NAME>ZPACK_BP_SCREEN-PACKAGENO</NAME>
+       <TEXT>___.___.___.___</TEXT>
+       <LINE>001</LINE>
+       <COLUMN>001</COLUMN>
+       <LENGTH>015</LENGTH>
+       <VISLENGTH>076</VISLENGTH>
+       <HEIGHT>001</HEIGHT>
+       <FORMAT>DEC</FORMAT>
+       <FROM_DICT>X</FROM_DICT>
+       <FOREIGNKEY>X</FOREIGNKEY>
+       <OUTPUT_FLD>X</OUTPUT_FLD>
+       <REQU_ENTRY>N</REQU_ENTRY>
+      </RPY_DYFATC>
+     </FIELDS>
+     <FLOW_LOGIC>
+      <RPY_DYFLOW>
+       <LINE>PROCESS BEFORE OUTPUT.</LINE>
+      </RPY_DYFLOW>
+      <RPY_DYFLOW>
+       <LINE>* MODULE STATUS_0001.</LINE>
+      </RPY_DYFLOW>
+      <RPY_DYFLOW>
+       <LINE>MODULE pbo.</LINE>
+      </RPY_DYFLOW>
+      <RPY_DYFLOW>
+       <LINE>LOOP AT g_tab_zpacknr</LINE>
+      </RPY_DYFLOW>
+      <RPY_DYFLOW>
+       <LINE>INTO g_str_zpacknr</LINE>
+      </RPY_DYFLOW>
+      <RPY_DYFLOW>
+       <LINE>WITH CONTROL tc_package_number</LINE>
+      </RPY_DYFLOW>
+      <RPY_DYFLOW>
+       <LINE>CURSOR tc_package_number-current_line.</LINE>
+      </RPY_DYFLOW>
+      <RPY_DYFLOW>
+       <LINE>MODULE move_data.</LINE>
+      </RPY_DYFLOW>
+      <RPY_DYFLOW>
+       <LINE>ENDLOOP.</LINE>
+      </RPY_DYFLOW>
+      <RPY_DYFLOW/>
+      <RPY_DYFLOW>
+       <LINE>PROCESS AFTER INPUT.</LINE>
+      </RPY_DYFLOW>
+      <RPY_DYFLOW>
+       <LINE>LOOP AT g_tab_zpacknr.</LINE>
+      </RPY_DYFLOW>
+      <RPY_DYFLOW>
+       <LINE>CHAIN.</LINE>
+      </RPY_DYFLOW>
+      <RPY_DYFLOW>
+       <LINE>FIELD zpack_bp_screen-packageno.</LINE>
+      </RPY_DYFLOW>
+      <RPY_DYFLOW>
+       <LINE>MODULE modify ON CHAIN-REQUEST.</LINE>
+      </RPY_DYFLOW>
+      <RPY_DYFLOW>
+       <LINE>ENDCHAIN.</LINE>
+      </RPY_DYFLOW>
+      <RPY_DYFLOW>
+       <LINE>ENDLOOP.</LINE>
+      </RPY_DYFLOW>
+      <RPY_DYFLOW>
+       <LINE>MODULE pai.</LINE>
+      </RPY_DYFLOW>
+      <RPY_DYFLOW>
+       <LINE>* MODULE USER_COMMAND_0001.</LINE>
+      </RPY_DYFLOW>
+     </FLOW_LOGIC>
+     <SPACES>
+      <item>0</item>
+      <item>0</item>
+      <item>2</item>
+      <item>2</item>
+      <item>4</item>
+      <item>4</item>
+      <item>4</item>
+      <item>4</item>
+      <item>2</item>
+      <item>0</item>
+      <item>0</item>
+      <item>2</item>
+      <item>4</item>
+      <item>6</item>
+      <item>6</item>
+      <item>4</item>
+      <item>2</item>
+      <item>2</item>
+      <item>0</item>
+     </SPACES>
+    </item>
+   </DYNPROS>
+   <CUA/>
+  </asx:values>
+ </asx:abap>
+</abapGit>
