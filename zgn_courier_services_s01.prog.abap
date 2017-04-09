@@ -4,6 +4,9 @@
 
 TABLES: sscrfields.
 
+DATA:
+      l_str_packdata TYPE zpackage_data.
+
 SELECTION-SCREEN BEGIN OF BLOCK b1 WITH FRAME TITLE TEXT-001.
 PARAMETERS:
   p_cont  TYPE c LENGTH 20,
@@ -25,3 +28,11 @@ INITIALIZATION.
 AT SELECTION-SCREEN.
   IF sscrfields-ucomm EQ 'BUT1'.
   ENDIF.
+
+  l_str_packdata-content = p_cont.
+  l_str_packdata-send_from = p_from.
+  l_str_packdata-send_to = p_to.
+  l_str_packdata-value = p_value.
+  l_str_packdata-weight = p_weig.
+
+  PERFORM filldb USING l_str_packdata.
